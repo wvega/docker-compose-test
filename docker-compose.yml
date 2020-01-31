@@ -1,0 +1,67 @@
+version: '2'
+
+services:
+  codeception:
+    build: .
+    depends_on:
+      - wordpress
+    environment:
+      - GITHUB_TOKEN=$GITHUB_TOKEN
+      - WP_CLI_CACHE_DIR=/wp-core/.wp-cli/cache
+      - WP_ROOT_FOLDER=/wp-core
+      - WP_URL=http://wordpress/
+      - WP_DOMAIN=wordpress
+      - WP_ADMIN_PATH=/wp-admin
+      - WP_ADMIN_EMAIL=admin@plugins.skyverge.test
+      - WP_ADMIN_USERNAME=admin
+      - WP_ADMIN_PASSWORD=password
+      - ADMIN_EMAIL=admin@plugins.skyverge.test
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=password
+      - ACCEPTANCE_DB_NAME=wordpress
+      - ACCEPTANCE_DB_HOST=mysql
+      - ACCEPTANCE_DB_USER=root
+      - ACCEPTANCE_DB_PASSWORD=wordpress
+      - ACCEPTANCE_DB_TABLE_PREFIX=wp_
+      - ACCEPTANCE_TABLE_PREFIX=wp_
+      - INTEGRATION_DB_NAME=wordpress
+      - INTEGRATION_DB_HOST=mysql
+      - INTEGRATION_DB_USER=root
+      - INTEGRATION_DB_PASSWORD=wordpress
+      - INTEGRATION_DB_TABLE_PREFIX=wp_
+      - INTEGRATION_TABLE_PREFIX=wp_
+    volumes:
+      - wp-core:/wp-core
+
+  wordpress:
+    image: wordpress:latest
+    depends_on:
+      - mysql
+      - chrome
+    environment:
+      WORDPRESS_DB_PASSWORD: wordpress
+    volumes:
+      - wp-core:/var/www/html
+    ports:
+      - 8080:80
+
+  mysql:
+    image: mariadb
+    environment:
+       MYSQL_ROOT_PASSWORD: wordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+
+  chrome:
+    image: selenium/standalone-chrome-debug:3.141.59-dubnium
+    environment:
+      - DBUS_SESSION_BUS_ADDRESS=/dev/null
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "4444:4444"
+      - "5900:5900"
+
+volumes:
+  wp-core:
