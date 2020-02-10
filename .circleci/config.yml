@@ -11,6 +11,7 @@ jobs:
     working_directory: /home/circleci/
 
     steps:
+      - checkout
       - setup_remote_docker
       - run:
           name: "Bring containers up"
