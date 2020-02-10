@@ -11,9 +11,9 @@ jobs:
     steps:
       - setup_remote_docker
       - run:
-        name: "Bring containers up"
-        command: |
-          docker-compose -f docker-compose.yml run codeception bootstrap
-          docker-compose -f docker-compose.yml vendor/bin/codecept run integration
-          docker-compose -f docker-compose.yml vendor/bin/codecept run acceptance
+          name: "Bring containers up"
+          command: |
+            docker-compose -f docker-compose.yml run codeception bootstrap
+            docker-compose -f docker-compose.yml vendor/bin/codecept run integration
+            docker-compose -f docker-compose.yml vendor/bin/codecept run acceptance
       - run: echo "Hello World 1"
