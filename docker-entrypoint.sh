@@ -12,13 +12,14 @@ wp-bootstrap() {
 
 	cd /wp-core
 
-	echo "Making sure permissions are correct"
+	echo "Making sure permissions for wp-content are correct"
 
 	# Make sure permissions are correct (maybe can be avoided with https://stackoverflow.com/a/56990338).
 	chown -R www-data:www-data wp-content
 	chmod 755 wp-content
 
-	# Make sure the database is up and running.
+	echo "Making sure the database is up and running"
+
 	while ! mysqladmin ping -hmysql --silent; do
 
 		echo 'Waiting for the database'
