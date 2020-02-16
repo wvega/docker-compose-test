@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  codeception:
+    volumes:
+      - project:/project
+      - project:/wp-core/wp-content/plugins/test-plugin
+
+  wordpress:
+    volumes:
+      - project:/var/www/html/wp-content/plugins/test-plugin
+
+volumes:
+  project:
+    external: true

@@ -22,7 +22,7 @@ jobs:
       - run:
           name: "Bring containers up"
           command: |
-            docker-compose -f docker-compose.yml run codeception bootstrap
-            docker-compose -f docker-compose.yml vendor/bin/codecept run integration
-            docker-compose -f docker-compose.yml vendor/bin/codecept run acceptance
+            docker-compose -f docker-compose.yml run -f docker-compose.circleci.yml -w /wp-core/wp-content/plugins/test-plugin codeception bootstrap
+            docker-compose -f docker-compose.yml run -f docker-compose.circleci.yml -w /wp-core/wp-content/plugins/test-plugin codeception vendor/bin/codecept run integration
+            docker-compose -f docker-compose.yml run -f docker-compose.circleci.yml -w /wp-core/wp-content/plugins/test-plugin codeception vendor/bin/codecept run acceptance
       - run: echo "Hello World 1"
