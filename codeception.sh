@@ -1,3 +1,5 @@
-wp plugin activate test-plugin --path=/wp-core
+cd /wp-core
 
-wp db export /project/tests/_data/dump.sql --path=/wp-core
+wp plugin activate test-plugin
+
+wp db export /project/tests/_data/dump.sql
