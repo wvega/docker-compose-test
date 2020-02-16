@@ -52,7 +52,7 @@ wp-bootstrap() {
 
 	# Install vendor
 	composer install --prefer-dist --optimize-autoloader
- 
+
 	if [ -f codeception.sh ]; then
 		source codeception.sh
 	fi
