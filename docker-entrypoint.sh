@@ -6,11 +6,11 @@ wp-bootstrap() {
 
 	cd /wp-core
 
-	echo "Making sure permissions for wp-content are correct"
+	echo "Making sure permissions are correct"
 
 	# Make sure permissions are correct (maybe can be avoided with https://stackoverflow.com/a/56990338).
-	chown -R www-data:www-data wp-content
-	chmod 755 wp-content
+	chown -R www-data:www-data /wp-core
+	chmod 755 /wp-core
 
 	echo "Making sure the database is up and running"
 
