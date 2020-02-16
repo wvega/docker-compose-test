@@ -65,6 +65,8 @@ elif [[ "$1" == start ]]; then
 	# keep the service running...
 	tail -f /dev/null
 
+# TODO: add an entry point that will execute the command as www-data using: sudo -E -u www-data "$@"
+
 else
 
 	# allow one-off command execution
