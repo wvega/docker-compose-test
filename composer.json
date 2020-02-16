@@ -11,5 +11,10 @@
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"SkyVerge\\WooCommerce\\TestPlugin\\": "includes/"
+		}
 	}
 }

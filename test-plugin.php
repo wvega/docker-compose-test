@@ -125,10 +125,7 @@ class SV_Test_Plugin_Loader {
 		$this->load_framework();
 
 		// autoload plugin and vendor files
-		$loader = require_once( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' );
-
-		// register plugin namespace with autoloader
-		$loader->addPsr4( 'SkyVerge\\WooCommerce\\TestPlugin\\', __DIR__ . '/includes' );
+		require_once( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' );
 
 		// depending on how the plugin is structured, you may need to manually load the file that contains the initial plugin function
 		require_once( plugin_dir_path( __FILE__ ) . 'includes/Functions.php' );
