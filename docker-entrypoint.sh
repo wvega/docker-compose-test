@@ -38,6 +38,12 @@ wp-bootstrap() {
 	wp plugin install woocommerce --activate
 	wp plugin install woocommerce-admin --activate
 
+	# remove WooCommerce admin notices
+	wp option update woocommerce_admin_notices [] --format=json
+
+	# prevent WooCommerce redirection to Setup Wizard
+	wp transient delete _wc_activation_redirect
+
 	wp db export fresh-install.sql
 
 	echo "Preparing plugin"
