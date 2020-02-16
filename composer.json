@@ -1,20 +1,20 @@
 {
-	"minimum-stability": "dev",
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/skyverge/wc-plugin-framework"
-		}
-	],
-	"require" : {
-		"skyverge/wc-plugin-framework": "5.5.4"
-	},
-	"require-dev": {
-		"lucatume/wp-browser": "dev-master"
-	},
-	"autoload": {
-		"psr-4": {
-			"SkyVerge\\WooCommerce\\TestPlugin\\": "includes/"
-		}
-	}
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/skyverge/wc-plugin-framework"
+    }
+  ],
+  "require" : {
+    "skyverge/wc-plugin-framework": "5.5.4"
+  },
+  "require-dev": {
+    "lucatume/wp-browser": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "SkyVerge\\WooCommerce\\TestPlugin\\": "includes/"
+    }
+  }
 }
