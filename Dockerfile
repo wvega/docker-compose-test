@@ -46,7 +46,11 @@ RUN composer global require --optimize-autoloader \
 # Add WP-CLI
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
-RUN mv wp-cli.phar /usr/local/bin/wp
+RUN mv wp-cli.phar /usr/local/bin
+
+# Allows WP CLI to run with the right permissions.
+RUN echo "#\!/bin/bash\nsudo -E -u www-data /usr/local/bin/wp-cli.phar \"\$@\"" > /usr/local/bin/wp
+RUN chmod +x /usr/local/bin/wp
 
 ADD docker-entrypoint.sh /usr/local/bin/
 

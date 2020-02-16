@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Allows WP CLI to run with the right permissions.
-wp-su() {
-
-	sudo -E -u www-data wp "$@"
-}
-
 wp-bootstrap() {
 
 	echo "Preparing WordPress"
@@ -30,21 +24,21 @@ wp-bootstrap() {
 	echo 'The database is ready'
 
 	# Make sure WordPress is installed.
-	if ! $(wp-su core is-installed); then
+	if ! $(wp core is-installed); then
 
 		echo "Installing WordPress"
 
-		wp-su core install --url=wordpress:8080 --title=tests --admin_user=admin --admin_password=password --admin_email=admin@plugins.skyverge.test
+		wp core install --url=wordpress:8080 --title=tests --admin_user=admin --admin_password=password --admin_email=admin@plugins.skyverge.test
 
 		# The development version of Gravity Flow requires SCRIPT_DEBUG
-		wp-su core config --dbhost=mysql --dbname=wordpress --dbuser=root --dbpass=wordpress --extra-php="define( 'SCRIPT_DEBUG', true );" --force
+		wp core config --dbhost=mysql --dbname=wordpress --dbuser=root --dbpass=wordpress --extra-php="define( 'SCRIPT_DEBUG', true );" --force
 
 	fi
 
-	wp-su plugin install woocommerce --activate
-	wp-su plugin install woocommerce-admin --activate
+	wp plugin install woocommerce --activate
+	wp plugin install woocommerce-admin --activate
 
-	wp-su db export fresh-install.sql
+	wp db export fresh-install.sql
 
 	echo "Preparing plugin"
 
