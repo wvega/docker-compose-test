@@ -14,6 +14,12 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
+          name: "Prepare volumes"
+          command: |
+            docker volume create --name project
+            docker create -v project:/project --name data alpine /bin/true
+            git archive --format tar $CIRCLE_SHA1 | docker cp - data:/project
+      - run:
           name: "Bring containers up"
           command: |
             docker-compose -f docker-compose.yml run codeception bootstrap
